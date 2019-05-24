@@ -14,7 +14,7 @@
 #define sensorLineaAtrasDer   A2		//Atras derecha
 #define sensorLineaAtrasIzq   A3		//Atras izquierda
 
-#define Blanco 		          1         //Valor digital equivalente
+#define Blanco 		            1         //Valor digital equivalente
 #define Negro                 0         //Valor digital equivalente 
 
 #define Motor1Derecha        10			//Pin PWM Motor 1 derecha
@@ -113,7 +113,7 @@ int lectDer(){
   delayMicroseconds(10);        // Duracion del pulso
   digitalWrite(trigSensorDer, LOW);  // Flanco descendente
 
-  /* Recepcion del eco de respuesta *
+  /* Recepcion del eco de respuesta */
    duracionDer = pulseIn(echoSensorDer, HIGH);
    
   /* Calculo de la distancia efectiva */
