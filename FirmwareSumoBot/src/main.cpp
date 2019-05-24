@@ -1,18 +1,24 @@
+/*
+Firmware de sumorobot basado en sensores ultrasonicos y
+sensores de linea infrarrojos, y usa como controlador 
+pricipal un microcontrolador ATMega328p aunque el codigo
+es portable a otros miconcontroladores compatibles con 
+el framework de arduino.
+#Autor: 
+Wilson Oviedo Hachen || github.com/WilsonOviedo
+#Colaboradores:
+
+#
+*/
 #include <Arduino.h>
 
 #define trigSensorFrente      2
 #define echoSensorFrente      3
 #define trigSensorAtras       4
 #define echoSensorAtras       5
-#define trigSensorIzq         6
-#define echoSensorIzq         7
-#define trigSensorDer         8
-#define echoSensorDer         9
 
-#define sensorLineaFrenteDer  A0        //Frente derecha 
-#define sensorLineaFrenteIzq  A1		//Frente izquiuerda
-#define sensorLineaAtrasDer   A2		//Atras derecha
-#define sensorLineaAtrasIzq   A3		//Atras izquierda
+#define sensorLineaFrente     A0        //Frente derecha 
+#define sensorLineaAtras      A1		//Atras izquierda
 
 #define Blanco 		            1         //Valor digital equivalente
 #define Negro                 0         //Valor digital equivalente 
@@ -28,27 +34,19 @@
 
 long duracionFrente, distanciaFrente;  // Variables de Sensor ultrasonico del frente
 long duracionAtras, distanciaAtras;  // Variables de Sensor ultrasonico del frente
-long duracionIzq, distanciaIzq;  // Variables de Sensor ultrasonico del frente
-long duracionDer, distanciaDer;  // Variables de Sensor ultrasonico del frente
 
-int SensorLineaFrenteIzq,SensorLineaFrenteDer;
-int SensorLineaAtrasIzq,SensorLineaAtrasDer;
+int SensorLineaFrente;
+int SensorLineaAtras;
 
 void setup(){
 
-  pinMode(trigSensorDer, OUTPUT);
-  pinMode(echoSensorDer, INPUT);
-  pinMode(trigSensorIzq, OUTPUT);
-  pinMode(echoSensorIzq, INPUT);
   pinMode(trigSensorAtras, OUTPUT);
   pinMode(echoSensorAtras, INPUT);
   pinMode(trigSensorFrente, OUTPUT);
   pinMode(echoSensorFrente, INPUT);
 
-  pinMode(sensorLineaAtrasIzq, INPUT);
-  pinMode(sensorLineaAtrasDer, INPUT);
-  pinMode(sensorLineaFrenteIzq, INPUT);
-  pinMode(sensorLineaFrenteDer, INPUT);
+  pinMode(sensorLineaAtras, INPUT);
+  pinMode(sensorLineaAtras, INPUT);
 
   pinMode(Motor1Derecha, OUTPUT);
   pinMode(Motor1Izquierda, OUTPUT);
@@ -61,9 +59,9 @@ int lectFrente(){
   /* Hacer el disparo */
   digitalWrite(trigSensorFrente, LOW);  
   delayMicroseconds(2); 
-  digitalWrite(trigSensorFrente, HIGH);  // Flanco ascendente
-  delayMicroseconds(10);        // Duracion del pulso
-  digitalWrite(trigSensorFrente, LOW);  // Flanco descendente
+  digitalWrite(trigSensorFrente, HIGH);   // Flanco ascendente
+  delayMicroseconds(10);                  // Duracion del pulso
+  digitalWrite(trigSensorFrente, LOW);    // Flanco descendente
 
   /* Recepcion del eco de respuesta */
   duracionFrente = pulseIn(echoSensorFrente, HIGH);
@@ -77,9 +75,9 @@ int lectAtras(){
   /* Hacer el disparo */
   digitalWrite(trigSensorAtras, LOW);  
   delayMicroseconds(2); 
-  digitalWrite(trigSensorAtras, HIGH);  // Flanco ascendente
-  delayMicroseconds(10);        // Duracion del pulso
-  digitalWrite(trigSensorAtras, LOW);  // Flanco descendente
+  digitalWrite(trigSensorAtras, HIGH);    // Flanco ascendente
+  delayMicroseconds(10);                  // Duracion del pulso
+  digitalWrite(trigSensorAtras, LOW);     // Flanco descendente
 
   /* Recepcion del eco de respuesta */
   duracionAtras = pulseIn(echoSensorAtras, HIGH);
@@ -88,54 +86,17 @@ int lectAtras(){
   distanciaAtras = (duracionAtras/2) / 29;
   return distanciaAtras;
 }
-int lectIzq(){
 
-  /* Hacer el disparo */
-  digitalWrite(trigSensorIzq, LOW);  
-  delayMicroseconds(2); 
-  digitalWrite(trigSensorIzq, HIGH);  // Flanco ascendente
-  delayMicroseconds(10);        // Duracion del pulso
-  digitalWrite(trigSensorIzq, LOW);  // Flanco descendente
+int lectLineaFrente(){
+  SensorLineaFrente=digitalRead(sensorLineaFrente);
+  return SensorLineaFrente;
+}
 
-  /* Recepcion del eco de respuesta */
-  duracionIzq = pulseIn(echoSensorIzq, HIGH);
+int lectLineaAtras(){
+  SensorLineaAtras=digitalRead(sensorLineaAtras);
+  return SensorLineaAtras;
+}
 
-  /* Calculo de la distancia efectiva */
-  distanciaIzq = (duracionIzq/2) / 29;
-  return distanciaIzq;
-}
-int lectDer(){
-
-  /* Hacer el disparo */
-  digitalWrite(trigSensorDer, LOW);  
-  delayMicroseconds(2); 
-  digitalWrite(trigSensorDer, HIGH);  // Flanco ascendente
-  delayMicroseconds(10);        // Duracion del pulso
-  digitalWrite(trigSensorDer, LOW);  // Flanco descendente
-
-  /* Recepcion del eco de respuesta */
-   duracionDer = pulseIn(echoSensorDer, HIGH);
-   
-  /* Calculo de la distancia efectiva */
-  distanciaDer = (duracionDer/2) / 29;
-  return distanciaDer;
-}
-int lectLineaFrenteDerecha(){
-  SensorLineaFrenteDer=digitalRead(A0);
-  return SensorLineaFrenteDer;
-}
-int lectLineaFrenteIzquierda(){
-  SensorLineaFrenteIzq=digitalRead(A1);
-  return SensorLineaFrenteIzq;
-}
-int lectLineaAtrasDerecha(){
-  SensorLineaAtrasDer=digitalRead(A2);
-  return SensorLineaAtrasDer;
-}
-int lectLineaAtrasIzquierda(){
-  SensorLineaAtrasIzq=digitalRead(A3);
-  return SensorLineaAtrasIzq;
-}
 void movMotores(int M1Der, int M1Izq, int M2Der, int M2Izq){
   analogWrite(Motor1Derecha, M1Der);
   analogWrite(Motor1Izquierda, M1Izq);
@@ -155,15 +116,14 @@ void stopMotores(){
 
 void loop(){
   millis();
-  lectDer();
-  lectIzq();
+ 
   lectAtras();
   lectFrente();
 
   while(millis()/1000>=tiempoSeg){
-    while(lectLineaAtrasIzquierda()==Negro&&lectLineaAtrasDerecha()==Negro&&lectLineaFrenteDerecha()==Negro&&lectLineaFrenteIzquierda()==Negro){
+    while(lectLineaAtras()==Negro&&lectLineaFrente()==Negro){
 
-      if((distanciaDer<=distanciaMax)&&(distanciaIzq>distanciaMax)&&(distanciaAtras>distanciaMax)&&(distanciaFrente>distanciaMax)){             	//Caso el contrincante se encuentre a la DERECHA
+      if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){             	//Caso el contrincante se encuentre a la DERECHA
         do{
 
           movMotores(1,0,0,1);
@@ -175,7 +135,7 @@ void loop(){
 
       }
 
-      if((distanciaDer>distanciaMax)&&(distanciaIzq<=distanciaMax)&&(distanciaAtras>distanciaMax)&&(distanciaFrente>distanciaMax)){				//Caso el contrincante se encuentre a la IZQUIERDA
+      if((distanciaAtras>distanciaMax)&&(distanciaFrente<distanciaMax)){				//Caso el contrincante se encuentre a la IZQUIERDA
         do{
 
           movMotores(0,1,1,0);
@@ -186,20 +146,9 @@ void loop(){
         stopMotores(); 
       }
 
-      if((distanciaDer>distanciaMax)&&(distanciaIzq>distanciaMax)&&(distanciaAtras<=distanciaMax)&&(distanciaFrente>distanciaMax)){				//Caso el contrincante se encuentre ATRAS
-
-        movMotores(1,0,1,0);
-
-      }
-      if((distanciaDer>distanciaMax)&&(distanciaIzq>distanciaMax)&&(distanciaAtras>distanciaMax)&&(distanciaFrente<=distanciaMax)){				//Caso el contrincante se encuentre ENFRENTE
-
-        movMotores(0,1,0,1);
-
-      }
+    
     }
 
-    lectDer();
-    lectIzq();
     lectAtras();
     lectFrente();
 
