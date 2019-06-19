@@ -6,7 +6,7 @@ el framework de arduino.
 
 ## Colaboradores:
 
-Wilson Oviedo Hachen || github.com/WilsonOviedo
+Wilson Oviedo Hachen || https://github.com/WilsonOviedo
 
 ## Revisones:
 
