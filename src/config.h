@@ -10,7 +10,7 @@
 //Pines del sensor de linea
 #define sensorLineaFrente     A0        //Frente derecha 
 #define sensorLineaAtras      A1		//Atras izquierda
-
+//Definimos patrones de colores de linea
 #define Blanco 		          1         //Valor digital equivalente
 #define Negro                 0         //Valor digital equivalente 
 //Pines de conexion de puente H para los motores
