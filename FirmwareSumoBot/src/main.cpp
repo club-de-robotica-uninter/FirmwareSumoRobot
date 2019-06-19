@@ -11,6 +11,7 @@ Wilson Oviedo Hachen || github.com/WilsonOviedo
 #
 */
 #include <Arduino.h>
+#include "movimientos.h"
 
 #define trigSensorFrente      2
 #define echoSensorFrente      3
@@ -97,21 +98,6 @@ int lectLineaAtras(){
   return SensorLineaAtras;
 }
 
-void movMotores(int M1Der, int M1Izq, int M2Der, int M2Izq){
-  analogWrite(Motor1Derecha, M1Der);
-  analogWrite(Motor1Izquierda, M1Izq);
-
-  analogWrite(Motor2Derecha, M2Der);
-  analogWrite(Motor2Izquierda, M2Izq);
-}
-
-void stopMotores(){
-  analogWrite(Motor1Derecha, 0);
-  analogWrite(Motor1Izquierda, 0);
-
-  analogWrite(Motor2Derecha, 0);
-  analogWrite(Motor2Izquierda, 0);
-}
 
 
 void loop(){
@@ -126,7 +112,7 @@ void loop(){
       if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){             	//Caso el contrincante se encuentre a la DERECHA
         do{
 
-          movMotores(1,0,0,1);
+          MotoresGirarDerecha(200);
 
         } 
         while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
@@ -138,7 +124,7 @@ void loop(){
       if((distanciaAtras>distanciaMax)&&(distanciaFrente<distanciaMax)){				//Caso el contrincante se encuentre a la IZQUIERDA
         do{
 
-          movMotores(0,1,1,0);
+          MotoresGirarIzquierda(200);
 
         } 
         while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
