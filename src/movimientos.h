@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "config.h"
 
 void MotoresFrente(int vel){
   analogWrite(Motor1Derecha, vel);
