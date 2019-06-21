@@ -2,10 +2,10 @@
 
 
 //Pines del sensor ultrasonico
-#define trigSensorFrente      2
-#define echoSensorFrente      3
-#define trigSensorAtras       4
-#define echoSensorAtras       5
+#define trigSensorFrente      A2
+#define echoSensorFrente      A3
+#define trigSensorAtras       A4
+#define echoSensorAtras       A5
 
 //Pines del sensor de linea
 #define sensorLineaFrente     A0        //Frente derecha 

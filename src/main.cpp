@@ -31,10 +31,6 @@ void setup(){
   pinMode(Motor2Izquierda, OUTPUT);
 }
 
-
-
-
-
 void loop(){
   millis();
  
