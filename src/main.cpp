@@ -44,7 +44,7 @@ void loop(){
   while(millis()/1000>=tiempoSeg){
     while(lectLineaAtras()==Negro&&lectLineaFrente()==Negro){
 
-      if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){             	//Caso el contrincante se encuentre a la DERECHA
+      if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){       	//Caso el contrincante se encuentre a la DERECHA
         do{
 
           MotoresGirarDerecha(200);
