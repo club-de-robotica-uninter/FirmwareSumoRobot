@@ -5,7 +5,7 @@ long duracion, distancia;       // Variables de Sensor ultrasonico
 
 int LecSensorLinea;
 
-long lect_Ultrasonic(byte trigSensor, byte echoSensor)
+long lect_Ultrasonico(byte trigSensor, byte echoSensor)
 {
 
   /* Hacer el disparo */
