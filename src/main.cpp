@@ -7,7 +7,6 @@ el framework de arduino.
 
 #Colaboradores:
 Wilson Oviedo Hachen || github.com/WilsonOviedo
-
 */
 
 #include <Arduino.h>
@@ -29,45 +28,9 @@ void setup(){
   pinMode(Motor1Izquierda, OUTPUT);
   pinMode(Motor2Derecha, OUTPUT);
   pinMode(Motor2Izquierda, OUTPUT);
+
 }
 
 void loop(){
-  millis();
  
-  lectAtras();
-  lectFrente();
-
-  while(millis()/1000>=tiempoSeg){
-    while(lectLineaAtras()==Negro&&lectLineaFrente()==Negro){
-
-      if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){             	//Caso el contrincante se encuentre a la DERECHA
-        do{
-
-          MotoresGirarDerecha(200);
-
-        } 
-        while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
-
-        stopMotores(); 
-
-      }
-
-      if((distanciaAtras>distanciaMax)&&(distanciaFrente<distanciaMax)){				//Caso el contrincante se encuentre a la IZQUIERDA
-        do{
-
-          MotoresGirarIzquierda(200);
-
-        } 
-        while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
-
-        stopMotores(); 
-      }
-
-    
-    }
-
-    lectAtras();
-    lectFrente();
-
-  }    
 }

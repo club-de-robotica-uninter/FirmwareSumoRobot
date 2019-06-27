@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "config.h"
 
-void MotoresFrente(int vel){
+void MoverFrente(int vel){
   analogWrite(Motor1Derecha, vel);
   analogWrite(Motor1Izquierda, 0);
 
@@ -9,7 +9,7 @@ void MotoresFrente(int vel){
   analogWrite(Motor2Izquierda, 0);
 }
 
-void MotoresAtras(int vel){
+void MoverAtras(int vel){
   analogWrite(Motor1Derecha, 0);
   analogWrite(Motor1Izquierda, vel);
 
@@ -17,7 +17,7 @@ void MotoresAtras(int vel){
   analogWrite(Motor2Izquierda, vel);
 }
 
-void MotoresGirarDerecha(int vel){
+void GirarDerecha(int vel){
   analogWrite(Motor1Derecha, 0);
   analogWrite(Motor1Izquierda, vel);
 
@@ -25,7 +25,7 @@ void MotoresGirarDerecha(int vel){
   analogWrite(Motor2Izquierda, 0);
 }
 
-void MotoresGirarIzquierda(int vel){
+void GirarIzquierda(int vel){
   analogWrite(Motor1Derecha, vel);
   analogWrite(Motor1Izquierda, 0);
 
