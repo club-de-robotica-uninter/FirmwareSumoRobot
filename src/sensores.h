@@ -15,11 +15,17 @@ long lect_Ultrasonico(byte trigSensor, byte echoSensor)
   delayMicroseconds(10);          // Duracion del pulso
   digitalWrite(trigSensor, LOW);  // Flanco descendente
 
+ 
   /* Recepcion del eco de respuesta */
   duracion = pulseIn(echoSensor, HIGH);
 
   /* Calculo de la distancia efectiva */
   distancia = (duracion / 2) / 29;
+
+  if(distancia>500){
+    distancia=500;
+  }
+
   return distancia;
 }
 
