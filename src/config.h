@@ -12,8 +12,8 @@
 #define sensorLineaFrente     A0        //Frente derecha 
 #define sensorLineaAtras      A1		//Atras izquierda
 //Definimos patrones de colores de linea
-#define Blanco 		          1         //Valor digital equivalente
-#define Negro                 0         //Valor digital equivalente 
+#define Blanco 		          0         //Valor digital equivalente
+#define Negro                 1         //Valor digital equivalente 
 //Pines de conexion de puente H para los motores
 #define Motor1Derecha        5			//Pin PWM Motor 1 derecha
 #define Motor1Izquierda      6     	    //Pin PWM Motor 1 izquierda
@@ -21,8 +21,8 @@
 #define Motor2Izquierda      10     	//pin PWM Motor 2 izquierda
 
 //Tiempo de inicio del robot
-#define tiempoSeg             5
+#define tiempoSeg             4
 //Distancia maxima para detectar oponente
-#define distanciaMax         140		//Centimetro maximo Ring
+#define distanciaMax         100		//Centimetro maximo Ring
 
 

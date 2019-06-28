@@ -21,7 +21,7 @@ long lect_Ultrasonico(byte trigSensor, byte echoSensor)
 
   /* Calculo de la distancia efectiva */
   distancia = (duracion / 2) / 29;
-
+Serial.println(distancia);
   if(distancia>500){
     distancia=500;
   }
