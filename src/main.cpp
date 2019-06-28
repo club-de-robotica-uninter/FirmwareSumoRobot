@@ -34,10 +34,10 @@ void setup()
   pinMode(Motor2Derecha, OUTPUT);
   pinMode(Motor2Izquierda, OUTPUT);
 
-  while ((millis() - tiempo1) < tiempoSeg*1000)
-    ;
- 
-  desplegarRampa();
+/*while ((millis() - tiempo1) < tiempoSeg*1000)
+  ;
+
+desplegarRampa();*/
 }
 
 void loop()
@@ -48,6 +48,10 @@ void loop()
   Serial.println(String(lect_Linea(sensorLineaAtras)));
   delay(50);*/
 
+MoverAtras(255);
+
+
+/*
   while (lect_Ultrasonico(trigSensorAtras, echoSensorAtras) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaAtras) == Negro)
   {
     MoverAtras(255);
@@ -76,5 +80,5 @@ while (lect_Ultrasonico(trigSensorAtras,echoSensorAtras)>distanciaMax&&lect_Ultr
 {
   GirarDerecha(255);
 }
-
+*/
 }
