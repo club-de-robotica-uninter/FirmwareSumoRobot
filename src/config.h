@@ -24,3 +24,5 @@
 #define tiempoSeg             5
 //Distancia maxima para detectar oponente
 #define distanciaMax         140		//Centimetro maximo Ring
+
+

@@ -13,9 +13,14 @@ Wilson Oviedo Hachen || github.com/WilsonOviedo
 #include "movimientos.h"
 #include "sensores.h"
 
+//Variables globales
+int tiempo1 = 0;
 
-void setup(){
+void setup()
+{
+  tiempo1 = millis();
 
+  //Serial.begin(9600);
   pinMode(trigSensorAtras, OUTPUT);
   pinMode(echoSensorAtras, INPUT);
   pinMode(trigSensorFrente, OUTPUT);
@@ -29,8 +34,47 @@ void setup(){
   pinMode(Motor2Derecha, OUTPUT);
   pinMode(Motor2Izquierda, OUTPUT);
 
+  while ((millis() - tiempo1) < tiempoSeg*1000)
+    ;
+ 
+  desplegarRampa();
 }
 
-void loop(){
- 
+void loop()
+{
+ /* Serial.println(String(lect_Ultrasonico(trigSensorAtras, echoSensorAtras)));
+  Serial.println(String(lect_Ultrasonico(trigSensorFrente, echoSensorFrente)));
+  Serial.println(String(lect_Linea(sensorLineaFrente)));
+  Serial.println(String(lect_Linea(sensorLineaAtras)));
+  delay(50);*/
+
+  while (lect_Ultrasonico(trigSensorAtras, echoSensorAtras) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaAtras) == Negro)
+  {
+    MoverAtras(255);
+  }
+
+  while (lect_Ultrasonico(trigSensorFrente, echoSensorFrente) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaAtras) == Negro)
+  {
+    MoverFrente(255);
+  }
+
+if (lect_Linea(sensorLineaAtras)==Blanco )
+{
+  MoverFrente(255);
+  delay(100);
+  stopMotores();
+}
+
+if (lect_Linea(sensorLineaFrente)==Blanco )
+{
+  MoverAtras(255);
+  delay(100);
+  stopMotores();
+}
+
+while (lect_Ultrasonico(trigSensorAtras,echoSensorAtras)>distanciaMax&&lect_Ultrasonico(trigSensorFrente,echoSensorFrente)>distanciaMax)
+{
+  GirarDerecha(255);
+}
+
 }

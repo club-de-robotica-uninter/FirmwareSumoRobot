@@ -40,3 +40,9 @@ void stopMotores(){
   analogWrite(Motor2Derecha, 0);
   analogWrite(Motor2Izquierda, 0);
 }
+
+void desplegarRampa(){
+  GirarIzquierda(255);
+  delay(50);
+  stopMotores();
+}
