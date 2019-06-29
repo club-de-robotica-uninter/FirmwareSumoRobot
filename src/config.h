@@ -21,8 +21,8 @@
 #define Motor2Izquierda      10     	//pin PWM Motor 2 izquierda
 
 //Tiempo de inicio del robot
-#define tiempoSeg             4
+#define tiempoSeg             3.6
 //Distancia maxima para detectar oponente
-#define distanciaMax         100		//Centimetro maximo Ring
+#define distanciaMax         60		//Centimetro maximo Ring
 
 

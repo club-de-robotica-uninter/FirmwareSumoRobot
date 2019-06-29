@@ -42,16 +42,17 @@ desplegarRampa();
 
 void loop()
 {
-  /*Serial.println(String(lect_Ultrasonico(trigSensorAtras, echoSensorAtras)));
+  /* 
+  Serial.println(String(lect_Ultrasonico(trigSensorAtras, echoSensorAtras)));
   Serial.println(String(lect_Ultrasonico(trigSensorFrente, echoSensorFrente)));
   Serial.println(String(lect_Linea(sensorLineaFrente)));
   Serial.println(String(lect_Linea(sensorLineaAtras)));
-  delay(50);*/
+  delay(50);
 
 //MoverAtras(255);
+*/
 
-
-
+ 
   while (lect_Ultrasonico(trigSensorAtras, echoSensorAtras) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaFrente) == Negro)
   {
     MoverAtras(255);
@@ -62,23 +63,24 @@ void loop()
     MoverFrente(255);
   }
 
-if (lect_Linea(sensorLineaAtras)==Blanco )
+if (lect_Linea(sensorLineaAtras)==Blanco&&lect_Linea(sensorLineaFrente)==Negro )
 {
   MoverFrente(255);
-  delay(100);
+  delay(500);
   stopMotores();
 }
 
-if (lect_Linea(sensorLineaFrente)==Blanco )
+if (lect_Linea(sensorLineaFrente)==Blanco&&lect_Linea(sensorLineaAtras)==Negro )
 {
   MoverAtras(255);
-  delay(100);
+  delay(500);
   stopMotores();
 }
 
 while (lect_Ultrasonico(trigSensorAtras,echoSensorAtras)>distanciaMax&&lect_Ultrasonico(trigSensorFrente,echoSensorFrente)>distanciaMax)
 {
   GirarDerecha(255);
+  
 }
 
 }
