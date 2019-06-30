@@ -7,16 +7,20 @@ el framework de arduino.
 
 #Colaboradores:
 Wilson Oviedo Hachen || github.com/WilsonOviedo
-
 */
 
 #include <Arduino.h>
 #include "movimientos.h"
 #include "sensores.h"
 
+//Variables globales
+int tiempo1 = 0;
 
-void setup(){
+void setup()
+{
+  tiempo1 = millis();
 
+  Serial.begin(9600);
   pinMode(trigSensorAtras, OUTPUT);
   pinMode(echoSensorAtras, INPUT);
   pinMode(trigSensorFrente, OUTPUT);
@@ -29,49 +33,49 @@ void setup(){
   pinMode(Motor1Izquierda, OUTPUT);
   pinMode(Motor2Derecha, OUTPUT);
   pinMode(Motor2Izquierda, OUTPUT);
+
+while ((millis() - tiempo1) < tiempoSeg*1000)
+  ;
+
+desplegarRampa();
 }
 
+void loop()
+{
+  /* 
+  Serial.println(String(lect_Ultrasonico(trigSensorAtras, echoSensorAtras)));
+  Serial.println(String(lect_Ultrasonico(trigSensorFrente, echoSensorFrente)));
+  Serial.println(String(lect_Linea(sensorLineaFrente)));
+  Serial.println(String(lect_Linea(sensorLineaAtras)));
+  delay(50);
 
+//MoverAtras(255);
+*/
 
-
-
-void loop(){
-  millis();
  
-  lectAtras();
-  lectFrente();
+  while (lect_Ultrasonico(trigSensorAtras, echoSensorAtras) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaFrente) == Negro)
+  {
+    MoverAtras(255);
+  }
 
-  while(millis()/1000>=tiempoSeg){
-    while(lectLineaAtras()==Negro&&lectLineaFrente()==Negro){
+  while (lect_Ultrasonico(trigSensorFrente, echoSensorFrente) > distanciaMax && lect_Linea(sensorLineaAtras) == Negro && lect_Linea(sensorLineaFrente) == Negro)
+  {
+    MoverFrente(255);
+  }
 
-      if((distanciaAtras<distanciaMax)&&(distanciaFrente>distanciaMax)){       	//Caso el contrincante se encuentre a la DERECHA
-        do{
+{
 
-          MotoresGirarDerecha(200);
+if (lect_Linea(sensorLineaFrente)==Blanco&&lect_Linea(sensorLineaAtras)==Negro )
+{
+  MoverAtras(255);
+  delay(500);
+  stopMotores();
+}
 
-        } 
-        while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
+while (lect_Ultrasonico(trigSensorAtras,echoSensorAtras)>distanciaMax&&lect_Ultrasonico(trigSensorFrente,echoSensorFrente)>distanciaMax)
+{
+  GirarDerecha(255);
+  
+}
 
-        stopMotores(); 
-
-      }
-
-      if((distanciaAtras>distanciaMax)&&(distanciaFrente<distanciaMax)){				//Caso el contrincante se encuentre a la IZQUIERDA
-        do{
-
-          MotoresGirarIzquierda(200);
-
-        } 
-        while (lectFrente()>=distanciaMax||lectAtras()>=distanciaMax);
-
-        stopMotores(); 
-      }
-
-    
-    }
-
-    lectAtras();
-    lectFrente();
-
-  }    
 }
