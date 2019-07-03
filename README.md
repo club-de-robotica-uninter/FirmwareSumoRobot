@@ -13,5 +13,5 @@ Esteban Samaniego ||
 Estiven Pereira || https://github.com/DevelopWhite
 
 ## Revisones:
-# v1.0.0
+### v1.0.0
 -Codigo estable y funcional.
