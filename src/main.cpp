@@ -14,13 +14,13 @@ Wilson Oviedo Hachen || github.com/WilsonOviedo
 #include "sensores.h"
 
 //Variables globales
-int tiempo1 = 0;
+int tiempo=0,tiempo1 = 0;
 
 void setup()
 {
   tiempo1 = millis();
 
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(trigSensorAtras, OUTPUT);
   pinMode(echoSensorAtras, INPUT);
   pinMode(trigSensorFrente, OUTPUT);
@@ -33,8 +33,8 @@ void setup()
   pinMode(Motor1Izquierda, OUTPUT);
   pinMode(Motor2Derecha, OUTPUT);
   pinMode(Motor2Izquierda, OUTPUT);
-
-while ((millis() - tiempo1) < tiempoSeg*1000)
+tiempo=tiempoSeg*1000;
+while ((millis() - tiempo1) < tiempo)
   ;
 
 desplegarRampa();
@@ -63,7 +63,6 @@ void loop()
     MoverFrente(255);
   }
 
-{
 
 if (lect_Linea(sensorLineaFrente)==Blanco&&lect_Linea(sensorLineaAtras)==Negro )
 {
