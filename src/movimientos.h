@@ -43,8 +43,8 @@ void stopMotores(){
 
 void desplegarRampa(){
   MoverAtras(255);
-  delay(70);
+  delay(150);
   MoverFrente(255);
-  delay(70);
+  delay(150);
   stopMotores();
 }
