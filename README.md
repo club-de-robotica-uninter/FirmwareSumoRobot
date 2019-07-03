@@ -9,7 +9,9 @@ el framework de arduino.
 Wilson Oviedo Hachen || https://github.com/WilsonOviedo
 ### Mecanica
 Rody Fernandez || https://github.com/RodyFernandezz
+
 Esteban Samaniego ||
+
 Estiven Pereira || https://github.com/DevelopWhite
 
 ## Revisones:
