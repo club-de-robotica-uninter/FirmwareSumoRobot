@@ -23,6 +23,6 @@
 //Tiempo de inicio del robot
 #define tiempoSeg             3.5
 //Distancia maxima para detectar oponente
-#define distanciaMax         60		//Centimetro maximo Ring
+#define distanciaMax         100		//Centimetro maximo Ring
 
 
