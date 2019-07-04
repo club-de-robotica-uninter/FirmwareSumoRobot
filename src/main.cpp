@@ -82,7 +82,7 @@ if (lect_Linea(sensorLineaFrente)==Negro&&lect_Linea(sensorLineaAtras)==Blanco )
 while (lect_Ultrasonico(trigSensorAtras,echoSensorAtras)>distanciaMax&&lect_Ultrasonico(trigSensorFrente,echoSensorFrente)>distanciaMax)
 {
   Serial.println("Girar derecha");
-  GirarDerecha(255);
+  GirarDerecha(255 );
   
 }
 
