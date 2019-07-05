@@ -9,8 +9,8 @@
 #define echoSensorAtras       A5
 
 //Pines del sensor de linea
-#define sensorLineaFrente     A0        //Frente derecha 
-#define sensorLineaAtras      A1		//Atras izquierda
+#define sensorLineaFrente     A1        //Frente derecha 
+#define sensorLineaAtras      A0		//Atras izquierda
 //Definimos patrones de colores de linea
 #define Blanco 		          0         //Valor digital equivalente
 #define Negro                 1         //Valor digital equivalente 
@@ -21,8 +21,8 @@
 #define Motor2Izquierda      10     	//pin PWM Motor 2 izquierda
 
 //Tiempo de inicio del robot
-#define tiempoSeg             3.6
+#define tiempoSeg             3.5
 //Distancia maxima para detectar oponente
-#define distanciaMax         60		//Centimetro maximo Ring
+#define distanciaMax         100		//Centimetro maximo Ring
 
 
