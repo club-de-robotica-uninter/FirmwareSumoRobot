@@ -8,7 +8,7 @@ el framework de arduino.
 ### Firmware
 Wilson Oviedo Hachen || https://github.com/WilsonOviedo
 ### Mecanica
-Rody Fernandez || https://github.com/RodyFernandezz
+Rody Fernandez || https://github.com/rody-fernandez
 
 Esteban Samaniego ||
 
